@@ -91,7 +91,7 @@ to the customer Business on your behalf.
 
 #### Methods
 
-##### `.create(...) -> InstalmentLink
+##### `.create(...) -> InstalmentLink`
 
 ###### Parameters
 
