@@ -9,7 +9,7 @@ for purchases over time, while the supplier is paid upfront.
 
 1. [Installation](#installation)
 2. [Documentation](#documentation)
-3. Support
+3. [Support](#support)
 
 ## Installation
 
