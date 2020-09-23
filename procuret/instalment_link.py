@@ -20,6 +20,10 @@ class InstalmentLink(Codable):
 
     PATH = '/instalment-link'
 
+    _LINK_TEMPLATE = 'https://procuret.com/business/signup?supplier_id={entity\
+_id}&presented_invoice_id={invoice_id}&presented_invoice_amount={invoice_amoun\
+t}'
+
     coding_map = {
         'supplier': CD(EntityHeadline),
         'invoice_amount': CD(Decimal),
@@ -41,6 +45,16 @@ class InstalmentLink(Codable):
         self._invoice_identifier = invoice_identifier
 
         return
+
+    invitee_email = property(lambda s: s._invitee_email)
+    invoice_amount = property(lambda s: s._invoice_amount)
+    invoice_identifier = property(lambda s: s._invoice_identifier)
+
+    url = property(lambda s: s._LINK_TEMPLATE.format(
+        entity_id=str(s._supplier.entity_id),
+        invoice_id=s._invoice_identifier,
+        invoice_amount=str(s._invoice_amount)
+    ))
 
     @classmethod
     def create(
