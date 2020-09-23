@@ -42,12 +42,11 @@ in your HTTP headers.
 
 #### Properties
 
-`.session_id: int` - A 63-bit positive integer uniquely identifying this
-`Session`. `Session` will include this number in requests to Procuret API, so
+- `.session_id: int` - A 63-bit positive integer uniquely identifying this
+- `Session`. `Session` will include this number in requests to Procuret API, so
 that Procuret API can identify you.
-
-`.api_key` - A 192-bit random number encoded in urlsafe base64 and generated in
-a cryptographically secure manner. `Session` will use this key to sign your
+- `.api_key` - A 192-bit random number encoded in urlsafe base64 and generated
+in a cryptographically secure manner. `Session` will use this key to sign your
 requests to Procuret API using the SHA256 algorithm.
 
 #### Methods
@@ -84,10 +83,10 @@ to the customer Business on your behalf.
 
 #### Properties
 
-`.invitee_email: str` - The email address you associated with the link
-`.invoice_amount: Decimal` - The invoice amount presented by the link
-`.invoice_identifier: str` - The invoice ID presented by the link
-`.url: str` - The URL of the link
+- `.invitee_email: str` - The email address you associated with the link
+- `.invoice_amount: Decimal` - The invoice amount presented by the link
+- `.invoice_identifier: str` - The invoice ID presented by the link
+- `.url: str` - The URL of the link
 
 #### Methods
 
@@ -145,8 +144,8 @@ the perspective of a Supplier, you will create a `Session` with the
 
 #### Cases
 
-`.SUPPLIER`
-`.BUSINESS`
+- `.SUPPLIER`
+- `.BUSINESS`
 
 ### `CommunicationOption`
 
@@ -155,8 +154,8 @@ tell it how you wish for it to contact (or not contact) the a customer.
 
 #### Cases
 
-`.EMAIL_CUSTOMER` - Procuret will contact the customer by email
-`.DO_NOT_CONTACT_CUSTOMER` - Procuret will not try to contact the customer
+- `.EMAIL_CUSTOMER` - Procuret will contact the customer by email
+- `.DO_NOT_CONTACT_CUSTOMER` - Procuret will not try to contact the customer
 
 
 ## Support
