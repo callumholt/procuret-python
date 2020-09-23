@@ -1,0 +1,20 @@
+# created by virtualenv automatically
+.Python
+pip-selfcheck.json
+bin/*
+include/*
+lib/*
+share/*
+__py
+.mypy*
+*.rdb
+*.pyc
+.vscode/*
+configuration.json
+*.DS_Store
+dist/*
+*.egg-info
+deploy
+build/*
+pyvenv.cfg
+.mypy_cache
