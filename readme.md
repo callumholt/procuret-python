@@ -116,8 +116,8 @@ authenticate your request.
 # First we get a Session. In this case we authenticat with email and
 # passphrase. In a real integration, you might store the Session elsehwhere.
 session = Session.create_with_email(
-    email=self.email,
-    plaintext_secret=self.secret,
+    email=email,
+    plaintext_secret=secret,
     perspective=Perspective.SUPPLIER
 )
 
@@ -127,7 +127,7 @@ session = Session.create_with_email(
 # Procuret to send an email to the customer on our behalf inviting them
 # to pay using the link.
 link = InstalmentLink.create(
-    supplier=self.supplier_id,
+    supplier=supplier_id,
     invoice_amount=Decimal('422.42'),
     invitee_email='someone@great-domain.org',
     invoice_identifier='T 055',
