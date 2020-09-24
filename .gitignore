@@ -18,3 +18,4 @@ deploy
 build/*
 pyvenv.cfg
 .mypy_cache
+test.sh
