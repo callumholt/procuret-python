@@ -23,7 +23,7 @@ from urllib.request import urlopen
 T = TypeVar('T', bound='ApiRequest')
 
 with open('VERSION') as versionfile:
-    AGENT_VERSION = versionfile.read()
+    AGENT_VERSION = versionfile.read().replace('\n', '')
 
 API_ENDPOINT = 'https://procuret.com/api'
 
@@ -128,7 +128,7 @@ class ApiRequest:
         path: str
     ) -> Dict[str, str]:
 
-        time = int(datetime.utcnow().timestamp())
+        time = int(datetime.now().timestamp())
         payload = (str(time - (time % 900)) + path).encode('utf-8')
         digest = hmac.new(api_key.encode('utf-8'), payload, sha256).digest()
 
