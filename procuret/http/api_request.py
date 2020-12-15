@@ -65,14 +65,15 @@ class ApiRequest:
                 session=session
             )
 
+        encoded_data: Optional[bytes] = None
         if data is not None:
-            data = json.dumps(data).encode('utf-8')
+            encoded_data = json.dumps(data).encode('utf-8')
             headers['Content-Type'] = 'application/json'
 
         request = Request(
             url=url,
             method=method.value,
-            data=data,
+            data=encoded_data,
             headers=headers
         )
 

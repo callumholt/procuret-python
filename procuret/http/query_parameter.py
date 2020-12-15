@@ -21,12 +21,14 @@ class QueryParameter:
         self._key = key
         self._value = value
 
+        self._url_representation = self._represent(value)
+
         return
 
     key = property(lambda s: s._key)
 
     def __str__(self) -> str:
-        return self._key + '=' + str(self._value)
+        return self._key + '=' + self._url_representation
 
     @classmethod
     def remove_targets_with(
@@ -43,3 +45,16 @@ class QueryParameter:
             continue
 
         return targets
+
+    @staticmethod
+    def _represent(value: Any) -> str:
+
+        if isinstance(value, str):
+            return value
+
+        if isinstance(value, bool):
+            if value is True:
+                return 'true'
+            return 'false'
+
+        return str(value)

@@ -43,7 +43,7 @@ in your HTTP headers.
 #### Properties
 
 - `.session_id: int` - A 63-bit positive integer uniquely identifying this
-- `Session`. `Session` will include this number in requests to Procuret API, so
+`Session`. `Session` will include this number in requests to Procuret API, so
 that Procuret API can identify you.
 - `.api_key` - A 192-bit random number encoded in urlsafe base64 and generated
 in a cryptographically secure manner. `Session` will use this key to sign your
@@ -112,7 +112,7 @@ authenticate your request.
 ###### Example usage
 
 ```python
-# First we get a Session. In this case we authenticat with email and
+# First we get a Session. In this case we authenticate with email and
 # passphrase. In a real integration, you might store the Session elsehwhere.
 session = Session.create_with_email(
     email=email,

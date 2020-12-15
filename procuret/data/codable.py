@@ -8,6 +8,7 @@ from typing import TypeVar, Type, Any, Union, Dict, Optional, List
 from typing import Callable
 from enum import Enum
 from decimal import Decimal
+from procuret.data.decodable import Decodable
 
 T = TypeVar('T', bound='Codable')
 K = TypeVar('K', bound='CodableType')
@@ -93,7 +94,7 @@ type {x} does not appear to meet these requirements.\
             raise
 
 
-class Codable:
+class Codable(Decodable):
 
     coding_map: Dict[str, CodingDefinition] = NotImplemented
 

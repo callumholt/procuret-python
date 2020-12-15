@@ -29,7 +29,7 @@ class ProcuretTime(datetime, Codable):
         parsable = parsable.replace('T', ' ')
         parsable = parsable.replace('_', ' ')
         time = cls.strptime(parsable, cls._DB_FORMAT_STRING)
-        decoded = ProcuretTime(
+        decoded = cls(
             year=time.year,
             month=time.month,
             day=time.day,
