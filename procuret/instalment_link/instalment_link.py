@@ -64,6 +64,7 @@ t}'
         return
 
     public_id = property(lambda s: s._public_id)
+    supplier = property(lambda s: s._supplier)
     invitee_email = property(lambda s: s._invitee_email)
     invoice_amount = property(lambda s: s._invoice_amount)
     invoice_identifier = property(lambda s: s._invoice_identifier)
