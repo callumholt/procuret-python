@@ -6,15 +6,13 @@ author: hugh@blinkybeach.com
 from setuptools import setup, find_packages
 from os import path
 from codecs import open
+from procuret.version import VERSION
 
 here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README file
 with open(path.join(here, 'readme.md'), encoding='utf-8') as readme_file:
     LONG_DESCRIPTION = readme_file.read()
-
-with open(path.join(here, 'VERSION'), encoding='utf-8') as version_file:
-    VERSION = version_file.read()
 
 setup(
     name='procuret',
@@ -35,8 +33,7 @@ setup(
         'Programming Language :: Python :: 3.8',
         'Operating System :: OS Independent',
         'Topic :: Software Development :: Libraries',
-        'Topic :: Office/Business :: Financial',
-
+        'Topic :: Office/Business :: Financial'
     ],
     keywords='library http api web payments finance',
     packages=find_packages(),

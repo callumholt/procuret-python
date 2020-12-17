@@ -19,11 +19,9 @@ from base64 import b64encode
 from urllib.request import HTTPError
 from urllib.request import Request
 from urllib.request import urlopen
+from procuret.version import VERSION as AGENT_VERSION
 
 T = TypeVar('T', bound='ApiRequest')
-
-with open('VERSION') as versionfile:
-    AGENT_VERSION = versionfile.read().replace('\n', '')
 
 API_ENDPOINT = 'https://procuret.com/api'
 
