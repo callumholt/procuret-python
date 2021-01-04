@@ -17,6 +17,7 @@ from procuret.data.order import Order
 from procuret.http.query_parameters import QueryParameter, QueryParameters
 from typing import Optional
 from procuret.instalment_link.open import InstalmentLinkOpen
+from procuret.time.time import ProcuretTime
 
 
 Self = TypeVar('Self', bound='InstalmentLink')
@@ -31,12 +32,11 @@ class InstalmentLink(Codable):
     path = '/instalment-link'
     list_path = path + '/list'
 
-    _LINK_TEMPLATE = 'https://procuret.com/business/signup?supplier_id={entity\
-_id}&presented_invoice_id={invoice_id}&presented_invoice_amount={invoice_amoun\
-t}'
+    _LINK_TEMPLATE = 'https://procuret.com/b?il={public_id}'
 
     coding_map = {
         'public_id': CD(str),
+        'created': CD(ProcuretTime),
         'supplier': CD(EntityHeadline),
         'invoice_amount': CD(Decimal),
         'invitee_email': CD(str),
@@ -47,6 +47,7 @@ t}'
     def __init__(
         self,
         public_id: str,
+        created: ProcuretTime,
         supplier: EntityHeadline,
         invitee_email: str,
         invoice_amount: Decimal,
@@ -55,6 +56,7 @@ t}'
     ) -> None:
 
         self._supplier = supplier
+        self._created = created
         self._public_id = public_id
         self._invitee_email = invitee_email
         self._invoice_amount = invoice_amount
@@ -64,6 +66,7 @@ t}'
         return
 
     public_id = property(lambda s: s._public_id)
+    created = property(lambda s: s._created)
     supplier = property(lambda s: s._supplier)
     invitee_email = property(lambda s: s._invitee_email)
     invoice_amount = property(lambda s: s._invoice_amount)
@@ -74,11 +77,7 @@ t}'
     has_been_opened = property(lambda s: len(s._opens) > 0)
     open_count = property(lambda s: len(s._opens))
 
-    url = property(lambda s: s._LINK_TEMPLATE.format(
-        entity_id=str(s._supplier.entity_id),
-        invoice_id=s._invoice_identifier,
-        invoice_amount=str(s._invoice_amount)
-    ))
+    url = property(lambda s: s._LINK_TEMPLATE.format(public_id=s._public_id))
 
     @classmethod
     def create(
@@ -221,4 +220,6 @@ t}'
             query_parameters=QueryParameters(parameters)
         )
 
-        return cls.optionally_decode_many(result, default_to_empty_list=True)
+        links = cls.optionally_decode_many(result, default_to_empty_list=True)
+        assert links is not None
+        return links
