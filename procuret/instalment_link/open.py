@@ -49,7 +49,7 @@ class InstalmentLinkOpen(Codable):
         if not isinstance(session, Session):
             raise ProcuretTypeError('Session', session, 'session')
 
-        result = ApiRequest.make(
+        _ = ApiRequest.make(
             path=cls.path,
             method=HTTPMethod.POST,
             data={'link_id': link_id},

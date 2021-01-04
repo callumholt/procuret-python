@@ -70,6 +70,10 @@ t}'
     invoice_identifier = property(lambda s: s._invoice_identifier)
     opens = property(lambda s: s._opens)
 
+    invoice_amount_pretty = property(lambda s: '{:,}'.format(s.invoice_amount))
+    has_been_opened = property(lambda s: len(s._opens) > 0)
+    open_count = property(lambda s: len(s._opens))
+
     url = property(lambda s: s._LINK_TEMPLATE.format(
         entity_id=str(s._supplier.entity_id),
         invoice_id=s._invoice_identifier,
