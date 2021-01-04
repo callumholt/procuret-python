@@ -37,6 +37,7 @@ class ApiRequest:
     SIGNATURE_KEY_NAME = 'x-procuret-signature'
     SESSION_ID_NAME = 'x-procuret-session-id'
     USER_AGENT = 'Procuret Python ' + AGENT_VERSION
+    FORWARDED_AGENT = 'x-procuret-forwarded-agent'
 
     @classmethod
     def make(
@@ -60,6 +61,12 @@ class ApiRequest:
             headers = cls._add_authorisation_to_headers(
                 headers=headers,
                 path=path,
+                session=session
+            )
+
+        if session is not None and session.acts_for_another_agent:
+            headers = cls._add_forwarded_agent_to_headers(
+                headers=headers,
                 session=session
             )
 
@@ -108,6 +115,20 @@ class ApiRequest:
             )
 
         raise NotImplementedError
+
+    @classmethod
+    def _add_forwarded_agent_to_headers(
+        cls: Type[T],
+        headers: Dict[str, str],
+        session: AbstractSession
+    ) -> Dict[str, str]:
+
+        if not session.acts_for_another_agent:
+            return headers
+        
+        headers[cls.FORWARDED_AGENT] = str(session.on_behalf_of)
+
+        return headers
 
     @classmethod
     def _headers_with_key(

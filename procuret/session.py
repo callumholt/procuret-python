@@ -9,10 +9,10 @@ from procuret.ancillary.session_lifecycle import Lifecycle
 from procuret.ancillary.session_perspective import Perspective
 from procuret.http.api_request import ApiRequest
 from procuret.http.method import HTTPMethod
-from typing import TypeVar, Type
+from typing import TypeVar, Type, Optional
 from procuret.errors.inconsistent import InconsistentState
 
-T = TypeVar('T', bound='Session')
+Self = TypeVar('Self', bound='Session')
 
 
 class Session(AbstractSession):
@@ -33,7 +33,8 @@ class Session(AbstractSession):
         session_key: str,
         api_key: str,
         lifecycle: Lifecycle,
-        perspective: Perspective
+        perspective: Perspective,
+        on_behalf_of: Optional[int] = None
     ) -> None:
 
         self._session_id = session_id
@@ -41,6 +42,7 @@ class Session(AbstractSession):
         self._api_key = api_key
         self._lifecycle = lifecycle
         self._perspective = perspective
+        self._on_behalf_of = on_behalf_of
 
         return
 
@@ -49,15 +51,28 @@ class Session(AbstractSession):
     api_key = property(lambda s: s._api_key)
     lifecycle = property(lambda s: s._lifecycle)
     perspective = property(lambda s: s._perspective)
+    on_behalf_of = property(lambda s: s._on_behalf_of)
+
+    acts_for_another_agent = property(lambda s: s.on_behalf_of is not None)
+
+    def acting_for(self, agent: int) -> Self:
+        return Session(
+            session_id=self._session_id,
+            session_key=self._session_key,
+            api_key=self._api_key,
+            lifecycle=self._lifecycle,
+            perspective=self._perspective,
+            on_behalf_of=agent
+        )
 
     @classmethod
     def create_with_email(
-        cls: Type[T],
+        cls: Type[Self],
         email: str,
         plaintext_secret: str,
         perspective: Perspective,
         lifecycle: Lifecycle = Lifecycle.LONG_LIVED
-    ) -> T:
+    ) -> Self:
 
         data = {
             'email': email,
