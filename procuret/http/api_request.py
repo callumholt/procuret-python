@@ -4,6 +4,7 @@ Api Request Module
 author: hugh@blinkybeach.com
 """
 import json
+import os.path
 from procuret.ancillary.command_line import CommandLine
 from procuret.http.method import HTTPMethod
 from typing import TypeVar, Type, Optional, Dict, Union
@@ -29,6 +30,10 @@ CL = CommandLine.load()
 OVERRIDE_ENDPOINT = CL.get(key='--procuret-api-endpoint')
 if OVERRIDE_ENDPOINT is not None:
     API_ENDPOINT = OVERRIDE_ENDPOINT
+
+if os.path.exists('procuret_configuration'):
+    with open('procuret_configuration', 'r') as rfile:
+        API_ENDPOINT = json.loads(rfile.read())['api_endpoint']
 
 
 class ApiRequest:
