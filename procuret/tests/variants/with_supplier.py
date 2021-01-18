@@ -4,10 +4,10 @@ Test With Supplier Module
 author: hugh@blinkybeach.com
 """
 from procuret.ancillary.command_line import CommandLine
-from procuret.tests.test import Test
+from procuret.tests.variants.with_session import TestWithSession
 
 
-class TestWithSupplier(Test):
+class TestWithSupplier(TestWithSession):
 
     def __init__(self) -> None:
 
@@ -22,3 +22,12 @@ class TestWithSupplier(Test):
         return super().__init__()
 
     supplier_id = property(lambda s: s._supplier_id)
+
+    # _tws_cached_supplier: Optional[Supplier] = None
+
+    # def _tws_load_supplier(self) -> Supplier:
+
+    #    if self._tws_cached_supplier is None:
+    #        raise NotImplementedError
+
+    #    return self._tws_cached_supplier
