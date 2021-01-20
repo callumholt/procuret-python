@@ -29,3 +29,7 @@ class TermRate(Codable):
         self._periods_in_year = periods_in_year
 
         return
+
+    periods = property(lambda s: s._periods)
+    periods_in_year = property(lambda s: s._periods_in_year)
+    supplier_entity_id = property(lambda s: s._supplier_entity_id)
