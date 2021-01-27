@@ -28,7 +28,8 @@ if '--last' in sys.argv[1:]:
 
 TESTS = [
     cases.ExerciseInstalmentLink,
-    cases.ExerciseTermRateGroup
+    cases.ExerciseTermRateGroup,
+    cases.xero.RetrieveXeroEntityMap
 ]
 
 
