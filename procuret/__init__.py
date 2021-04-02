@@ -10,3 +10,5 @@ from procuret.version import VERSION
 from procuret.term_rate.term_rate import TermRate
 from procuret.term_rate.group import TermRateGroup
 from procuret.integrate.xero import XeroOrganisation, XeroEntityMap
+from procuret.money.amount import Amount
+from procuret.money.currency import Currency
