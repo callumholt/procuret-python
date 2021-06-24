@@ -3,7 +3,7 @@ Procuret Python
 Currency Module
 author: hugh@blinkybeach.com
 """
-from procuret.data.codable import Codable
+from procuret.data.codable import Codable, CodingDefinition as CD
 from procuret.money.unit_of_account import UnitOfAccount
 from typing import TypeVar, Type, Optional, Any
 
@@ -11,6 +11,14 @@ Self = TypeVar('Self', bound='Currency')
 
 
 class Currency(Codable, UnitOfAccount):
+
+    coding_map = {
+        'indexid': CD(int),
+        'name': CD(str),
+        'iso_4217': CD(str),
+        'exponent': CD(int),
+        'symbol': CD(str)
+    }
 
     def __init__(
         self,
@@ -38,10 +46,13 @@ class Currency(Codable, UnitOfAccount):
 
     @classmethod
     def decode(cls: Type[Self], data: Any) -> Self:
-        currency = cls.with_id(data)
-        if currency is None:
-            raise RuntimeError('Unknown currency ' + str(data))
-        return currency
+        print(type(data))
+        if isinstance(data, int):
+            currency = cls.with_id(data)
+            if currency is None:
+                raise RuntimeError('Unknown currency ' + str(data))
+            return currency
+        return super().decode(data)
 
     @classmethod
     def with_iso4217(cls: Type[Self], iso_4217: str) -> Optional[Self]:
@@ -61,7 +72,7 @@ class Currency(Codable, UnitOfAccount):
     def assertively_with_id(cls: Type[Self], indexid: int) -> Self:
         currency = cls.with_id(indexid)
         if currency is None:
-            raise NotFound('No currency found w/ id ' + str(indexid))
+            raise RuntimeError('No currency found w/ id ' + str(indexid))
         return currency
 
     def __eq__(self, other):
