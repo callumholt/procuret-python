@@ -130,7 +130,7 @@ class ApiRequest:
 
         if not session.acts_for_another_agent:
             return headers
-        
+
         headers[cls.FORWARDED_AGENT] = str(session.on_behalf_of)
 
         return headers

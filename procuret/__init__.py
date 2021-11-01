@@ -12,3 +12,4 @@ from procuret.term_rate.group import TermRateGroup
 from procuret.integrate.xero import XeroOrganisation, XeroEntityMap
 from procuret.money.amount import Amount
 from procuret.money.currency import Currency, Constants as Currencies
+from procuret.data.codable import Codable, CodingDefinition
