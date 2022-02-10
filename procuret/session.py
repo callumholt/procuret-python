@@ -71,6 +71,7 @@ class Session(AbstractSession):
         email: str,
         plaintext_secret: str,
         perspective: Perspective,
+        code: str,
         lifecycle: Lifecycle = Lifecycle.LONG_LIVED
     ) -> Self:
 
@@ -78,7 +79,8 @@ class Session(AbstractSession):
             'email': email,
             'secret': plaintext_secret,
             'perspective': perspective.value,
-            'lifecycle': lifecycle.value
+            'lifecycle': lifecycle.value,
+            'code': code
         }
 
         result = ApiRequest.make(
