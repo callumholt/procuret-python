@@ -3,6 +3,7 @@ Procuret Python
 Instalment Link Module
 author: hugh@blinkybeach.com
 """
+from xmlrpc.client import Boolean
 from procuret.ancillary.communication_option import CommunicationOption
 from typing import TypeVar, Type, Union, List
 from procuret.data.codable import Codable, CodingDefinition as CD
@@ -18,6 +19,8 @@ from procuret.http.query_parameters import QueryParameter, QueryParameters
 from typing import Optional
 from procuret.instalment_link.open import InstalmentLinkOpen
 from procuret.time.time import ProcuretTime
+from procuret.ancillary.sale_nomenclature import SaleNomenclature
+from procuret.money.currency import Currency
 
 
 Self = TypeVar('Self', bound='InstalmentLink')
@@ -41,7 +44,10 @@ class InstalmentLink(Codable):
         'invoice_amount': CD(Decimal),
         'invitee_email': CD(str),
         'invoice_identifier': CD(str),
-        'opens': CD(InstalmentLinkOpen, array=True)
+        'opens': CD(InstalmentLinkOpen, array=True),
+        'sale_name': CD(SaleNomenclature),
+        'allow_edit': CD(bool),
+        'denomination_id': CD(int)
     }
 
     def __init__(
@@ -52,7 +58,10 @@ class InstalmentLink(Codable):
         invitee_email: str,
         invoice_amount: Decimal,
         invoice_identifier: str,
-        opens: List[InstalmentLinkOpen]
+        opens: List[InstalmentLinkOpen],
+        sale_name: SaleNomenclature,
+        allow_edit: bool,
+        denomination_id: int
     ) -> None:
 
         self._supplier = supplier
@@ -62,6 +71,9 @@ class InstalmentLink(Codable):
         self._invoice_amount = invoice_amount
         self._invoice_identifier = invoice_identifier
         self._opens = opens
+        self._sale_name = sale_name
+        self._allow_edit = allow_edit
+        self._denomination_id = denomination_id
 
         return
 
@@ -72,6 +84,13 @@ class InstalmentLink(Codable):
     invoice_amount = property(lambda s: s._invoice_amount)
     invoice_identifier = property(lambda s: s._invoice_identifier)
     opens = property(lambda s: s._opens)
+    sale_name = property(lambda s: s._sale_name)
+    allow_edit = property(lambda s: s._allow_edit)
+    denomination_id = property(lambda s: s._denomination_id)
+
+    currency = property(lambda s: Currency.assertively_with_id(
+        indexid=s._denomination_id
+    ))
 
     invoice_amount_pretty = property(lambda s: '{:,}'.format(s.invoice_amount))
     has_been_opened = property(lambda s: len(s._opens) > 0)
