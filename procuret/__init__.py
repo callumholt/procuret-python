@@ -5,6 +5,7 @@ from procuret.instalment_link import InstalmentLinkOrderBy
 from procuret.data.order import Order
 from procuret.human.headline import HumanHeadline
 from procuret.ancillary.entity_headline import EntityHeadline
+from procuret.ancillary.sale_nomenclature import SaleNomenclature
 from procuret import errors
 from procuret.version import VERSION
 from procuret.term_rate.term_rate import TermRate
