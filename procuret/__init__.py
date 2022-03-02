@@ -14,3 +14,5 @@ from procuret.integrate.xero import XeroOrganisation, XeroEntityMap
 from procuret.money.amount import Amount
 from procuret.money.currency import Currency, Constants as Currencies
 from procuret.data.codable import Codable, CodingDefinition
+from procuret.global_brand.brand import GlobalBrand
+from procuret.global_brand.selection import GlobalBrandSelection
