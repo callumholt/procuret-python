@@ -26,6 +26,11 @@ class Disposition(Codable):
 
         return
 
+    sequence = property(lambda s: s._sequence)
+    count = property(lambda s: s._count)
+    limit = property(lambda s: s._limit)
+    offset = property(lambda s: s._offset)
+
     def encode(self) -> Dict[str, int]:
         return {
             'sequence': self._sequence,

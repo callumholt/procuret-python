@@ -6,6 +6,7 @@ author: hugh@blinkybeach.com
 from procuret.data.codable import Codable, CodingDefinition as CD
 from procuret.money.unit_of_account import UnitOfAccount
 from typing import TypeVar, Type, Optional, Any
+from decimal import Decimal
 
 Self = TypeVar('Self', bound='Currency')
 
@@ -41,12 +42,18 @@ class Currency(Codable, UnitOfAccount):
     exponent = property(lambda s: s._exponent)
     iso_4217 = property(lambda s: s._iso_4217)
 
+    def to_pretty_string(self, amount: Decimal) -> str:
+        amount = self.round_to_maximum_precision(amount)
+        return '{0:,}'.format(amount)
+
+    def to_symbolised_pretty_string(self, amount: Decimal) -> str:
+        return self._symbol + self.to_pretty_string(amount)
+
     def encode(self) -> int:
         return self._indexid
 
     @classmethod
     def decode(cls: Type[Self], data: Any) -> Self:
-        print(type(data))
         if isinstance(data, int):
             currency = cls.with_id(data)
             if currency is None:

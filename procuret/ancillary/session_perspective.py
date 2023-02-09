@@ -13,3 +13,4 @@ class Perspective(Enum):
     SALES = 4
     TREASURY = 5
     INVESTOR = 6
+    CUSTOMER_SUPPORT = 7

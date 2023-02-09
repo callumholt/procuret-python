@@ -3,9 +3,9 @@ Procuret Python
 QueryParameter Module
 author: hugh@blinkybeach.com
 """
-from typing import Any, TypeVar, Type, List
+from typing import Any, TypeVar, Type, List, Optional
 
-T = TypeVar('T', bound='QueryParameter')
+Self = TypeVar('Self', bound='QueryParameter')
 
 
 class QueryParameter:
@@ -30,12 +30,11 @@ class QueryParameter:
     def __str__(self) -> str:
         return self._key + '=' + self._url_representation
 
-    @classmethod
+    @staticmethod
     def remove_targets_with(
-        cls: Type[T],
         key: str,
-        targets: List[T]
-    ) -> List[T]:
+        targets: List[Self]
+    ) -> List[Self]:
 
         retained_targets: List[QueryParameter] = list()
         for target in targets:
@@ -45,6 +44,19 @@ class QueryParameter:
             continue
 
         return targets
+
+    @classmethod
+    def optionally(
+        Self: Type[Self],
+        key: str,
+        value: Optional[Any]   
+    ) -> Optional[Self]:
+
+        if value is None:
+            return None
+        
+        return Self(key, value)
+
 
     @staticmethod
     def _represent(value: Any) -> str:
