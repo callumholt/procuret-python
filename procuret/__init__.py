@@ -1,4 +1,4 @@
-from procuret.session import Session, Lifecycle, Perspective
+from procuret.session import Session, Lifecycle, Perspective, AbstractSession
 from procuret.ancillary.communication_option import CommunicationOption
 from procuret.instalment_link import InstalmentLink, InstalmentLinkOpen
 from procuret.instalment_link import InstalmentLinkOrderBy
