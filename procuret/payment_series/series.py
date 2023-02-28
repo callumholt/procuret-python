@@ -15,6 +15,7 @@ from procuret.data.order import Order
 from procuret.session import Session
 from procuret.http.api_request import ApiRequest, HTTPMethod, QueryParameters
 from procuret.http.query_parameter import QueryParameter
+from procuret.payment_series.payment_mechanism import PaymentMechanism
 
 Self = TypeVar('Self', bound='PaymentSeries')
 
@@ -39,6 +40,7 @@ class PaymentSeries(Codable):
         'sum_payments': CD(Amount),
         'total_payable': CD(Amount),
         'identifier': CD(str),
+        'mechanism': CD(PaymentMechanism),
         'disposition': CD(Disposition)
     }
 
@@ -57,6 +59,7 @@ class PaymentSeries(Codable):
         sum_payments: Amount,
         total_payable: Amount,
         identifier: str,
+        mechanism: PaymentMechanism,
         disposition: Disposition
     ) -> None:
 
@@ -71,6 +74,7 @@ class PaymentSeries(Codable):
         self._sum_payments = sum_payments
         self._total_payable = total_payable
         self._identifier = identifier
+        self._mechanism = mechanism
         self._disposition = disposition
 
         return
@@ -88,6 +92,7 @@ class PaymentSeries(Codable):
     sum_payments: Amount = property(lambda s: s._sum_payments)
     total_payable: Amount = property(lambda s: s._total_payable)
     identifier: str = property(lambda s: s._identifier)
+    mechanism: PaymentMechanism = property(lambda s: s._mechanism)
     disposition: Disposition = property(lambda s: s._disposition)
 
     @classmethod

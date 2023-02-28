@@ -18,4 +18,5 @@ from procuret.global_brand.brand import GlobalBrand
 from procuret.global_brand.selection import GlobalBrandSelection
 from procuret.payment_series.series import PaymentSeries
 from procuret.customer_payment import CustomerPayment
+from procuret.payment_series.payment_mechanism import PaymentMechanism
 
