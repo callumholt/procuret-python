@@ -43,6 +43,8 @@ class InstalmentLink(Codable):
         'supplier': CD(EntityHeadline),
         'invoice_amount': CD(Decimal),
         'invitee_email': CD(str, optional=True),
+        'invitee_phone_digits': CD(str, optional=True),
+        'invitee_human_id': CD(int, optional=True),
         'invoice_identifier': CD(str),
         'opens': CD(InstalmentLinkOpen, array=True),
         'sale_name': CD(SaleNomenclature),
@@ -56,6 +58,8 @@ class InstalmentLink(Codable):
         created: ProcuretTime,
         supplier: EntityHeadline,
         invitee_email: Optional[str],
+        invitee_phone_digits: Optional[str],
+        invitee_human_id: Optional[int],
         invoice_amount: Decimal,
         invoice_identifier: str,
         opens: List[InstalmentLinkOpen],
@@ -68,6 +72,8 @@ class InstalmentLink(Codable):
         self._created = created
         self._public_id = public_id
         self._invitee_email = invitee_email
+        self._invitee_phone_digits = invitee_phone_digits
+        self._invitee_human_id = invitee_human_id
         self._invoice_amount = invoice_amount
         self._invoice_identifier = invoice_identifier
         self._opens = opens
@@ -81,6 +87,8 @@ class InstalmentLink(Codable):
     created = property(lambda s: s._created)
     supplier = property(lambda s: s._supplier)
     invitee_email = property(lambda s: s._invitee_email)
+    invitee_phone_digits = property(lambda s: s._invitee_phone_digits)
+    invitee_human_id = property(lambda s: s._invitee_human_id)
     invoice_amount = property(lambda s: s._invoice_amount)
     invoice_identifier = property(lambda s: s._invoice_identifier)
     opens = property(lambda s: s._opens)
