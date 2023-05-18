@@ -21,6 +21,7 @@ from procuret.instalment_link.open import InstalmentLinkOpen
 from procuret.time.time import ProcuretTime
 from procuret.ancillary.sale_nomenclature import SaleNomenclature
 from procuret.money.currency import Currency
+from procuret.money.amount import Amount
 
 
 Self = TypeVar('Self', bound='InstalmentLink')
@@ -105,6 +106,11 @@ class InstalmentLink(Codable):
     open_count = property(lambda s: len(s._opens))
 
     url = property(lambda s: s._LINK_TEMPLATE.format(public_id=s._public_id))
+
+    amount: Amount = property(lambda s: Amount(
+        magnitude=s._invoice_amount,
+        denomination=Currency.assertively_with_id(s._denomination_id)
+    ))
 
     @classmethod
     def create(
