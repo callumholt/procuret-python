@@ -26,6 +26,8 @@ Self = TypeVar('Self', bound='Human')
 
 class Human(Codable):
 
+    path = '/human'
+
     coding_map = {
         'public_id': CD(int),
         'agent_id': CD(int),
@@ -104,7 +106,7 @@ class Human(Codable):
             data=None,
             session=session,
             query_parameters=QueryParameters([
-                QueryParameter('public_id', public_id)
+                QueryParameter('human_id', public_id)
             ])
         )
 
