@@ -19,3 +19,4 @@ build/*
 pyvenv.cfg
 .mypy_cache
 test.sh
+procuret_configuration

@@ -21,6 +21,7 @@ from urllib.request import HTTPError
 from urllib.request import Request
 from urllib.request import urlopen
 from procuret.version import VERSION as AGENT_VERSION
+import sys
 
 T = TypeVar('T', bound='ApiRequest')
 
@@ -31,10 +32,21 @@ OVERRIDE_ENDPOINT = CL.get(key='--procuret-api-endpoint')
 if OVERRIDE_ENDPOINT is not None:
     API_ENDPOINT = OVERRIDE_ENDPOINT
 
+_AGENT_PREFIX: Optional[str] = None
 if os.path.exists('procuret_configuration'):
     with open('procuret_configuration', 'r') as rfile:
-        API_ENDPOINT = json.loads(rfile.read())['api_endpoint']
+        json_data = json.loads(rfile.read())
+        API_ENDPOINT = json_data['api_endpoint']
+        _AGENT_PREFIX = json_data['agent_prefix'] if (
+            'agent_prefix' in json_data.keys()
+        ) else None
+    pass
 
+def _make_user_agent() -> str:
+    base = f'Procuret Python {AGENT_VERSION};Python {sys.version}'
+    if _AGENT_PREFIX is not None:
+        return f'{_AGENT_PREFIX};{base}'
+    return base
 
 class ApiRequest:
 
@@ -60,7 +72,7 @@ class ApiRequest:
         if query_parameters is not None:
             url = query_parameters.add_to(url)
 
-        headers = {'User-Agent': cls.USER_AGENT}
+        headers = {'User-Agent': _make_user_agent()}
 
         if session is not None:
             headers = cls._add_authorisation_to_headers(
