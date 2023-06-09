@@ -43,7 +43,7 @@ if os.path.exists('procuret_configuration'):
     pass
 
 def _make_user_agent() -> str:
-    base = f'Procuret Python {AGENT_VERSION};Python {sys.version}'
+    base = f'Procuret Python {AGENT_VERSION}'
     if _AGENT_PREFIX is not None:
         return f'{_AGENT_PREFIX};{base}'
     return base
