@@ -32,7 +32,7 @@ class PaymentSeries(Codable):
         'public_id': CD(str),
         'created': CD(ProcuretTime),
         'creating_agent': CD(int),
-        'payment_method': CD(PaymentMethodHeadline),
+        'payment_method': CD(PaymentMethodHeadline, optional=True),
         'customer': CD(EntityHeadline),
         'supplier': CD(EntityHeadline),
         'exchange_id': CD(str),
