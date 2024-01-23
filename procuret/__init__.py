@@ -20,3 +20,4 @@ from procuret.payment_series.series import PaymentSeries
 from procuret.customer_payment import CustomerPayment
 from procuret.payment_series.payment_mechanism import PaymentMechanism
 from procuret.human.human import Human
+from procuret.currency import PR_Currency
