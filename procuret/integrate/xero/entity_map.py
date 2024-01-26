@@ -5,9 +5,9 @@ author: hugh@blinkybeach.com
 """
 from procuret.errors.type_error import ProcuretTypeError
 from typing import Optional, TypeVar, Type
-from procuret.http.query_parameters import QueryParameter, QueryParameters
+from procuret.http2.query_parameters import QueryParameter, QueryParameters
 from procuret.data.codable import CodingDefinition as CD, Codable
-from procuret.http.api_request import ApiRequest, HTTPMethod
+from procuret.http2.api_request import ApiRequest, HTTPMethod
 from procuret.session import Session
 
 Self = TypeVar('Self', bound='XeroEntityMap')

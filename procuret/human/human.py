@@ -13,8 +13,8 @@ from procuret.data.disposition import Disposition
 from typing import TypeVar, Type, Optional, List
 from procuret.data.order import Order
 from procuret.session import Session
-from procuret.http.api_request import ApiRequest, HTTPMethod, QueryParameters
-from procuret.http.query_parameter import QueryParameter
+from procuret.http2.api_request import ApiRequest, HTTPMethod, QueryParameters
+from procuret.http2.query_parameter import QueryParameter
 from procuret.human_identity.identity import HumanIdentity
 from procuret.human_identity_document.document import HumanIdentityDocument
 from procuret.email_address.address import EmailAddress
@@ -46,7 +46,7 @@ class Human(Codable):
         'phone_number': CD(PhoneNumber),
         'disposition': CD(Disposition)
     }
-    
+
     def __init__(
         self,
         public_id: int,

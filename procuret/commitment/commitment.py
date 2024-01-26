@@ -7,8 +7,8 @@ from procuret.data.codable import Codable, CodingDefinition as CD
 from procuret.human.human import Human
 from typing import TypeVar, Type, Optional
 from procuret.session import Session
-from procuret.http.api_request import ApiRequest, HTTPMethod, QueryParameters
-from procuret.http.query_parameter import QueryParameter
+from procuret.http2.api_request import ApiRequest, HTTPMethod, QueryParameters
+from procuret.http2.query_parameter import QueryParameter
 
 Self = TypeVar('Self', bound='Commitment')
 

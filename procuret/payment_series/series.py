@@ -13,8 +13,8 @@ from procuret.data.disposition import Disposition
 from typing import TypeVar, Type, Optional, List
 from procuret.data.order import Order
 from procuret.session import Session
-from procuret.http.api_request import ApiRequest, HTTPMethod, QueryParameters
-from procuret.http.query_parameter import QueryParameter
+from procuret.http2.api_request import ApiRequest, HTTPMethod, QueryParameters
+from procuret.http2.query_parameter import QueryParameter
 from procuret.payment_series.payment_mechanism import PaymentMechanism
 
 Self = TypeVar('Self', bound='PaymentSeries')
@@ -45,7 +45,7 @@ class PaymentSeries(Codable):
     }
 
     OrderBy = OrderBy
-  
+
     def __init__(
         self,
         public_id: str,
@@ -112,7 +112,7 @@ class PaymentSeries(Codable):
 
         if len(result) < 1:
             return None
-        
+
         return result[0]
 
     @classmethod

@@ -2,8 +2,8 @@
 # payment would be made, if a customer successfully applied for a Procuret
 # Instalment Plan
 
-from currency import PR_Currency
 import requests
+from currency import PR_Currency
 
 
 class PR_ProspectivePayment:
@@ -71,7 +71,8 @@ class PR_ProspectivePayment:
                 data = response.json()
                 return PR_ProspectivePayment.decode(data), None
             else:
-                error_message = f"Failed to retrieve data. Status code:{response.status_code}, Response: {response.text}"
+                error_message = f"Failed to retrieve data. Status code:{
+                    response.status_code}, Response: {response.text}"
 
                 return None, error_message
 
@@ -140,3 +141,32 @@ class PR_QueryString:
 
 # Example usage -> DELETE BEFORE PULL REQUEST
 # response, error = PR_ProspectivePayment.retrieve('600', '511291212', PR_Currency.AUD, 12)
+'''
+# Example of retrieving a single prospective payment
+principal = "1000"  # $1000 as principal amount
+supplier_id = "123456789"  # Example Supplier ID
+currency = PR_Currency.AUD  # Assuming PR_Currency.AUD is a valid currency object
+months = 6  # Duration of 6 months
+
+response, error = PR_ProspectivePayment.retrieve(principal, supplier_id, currency, months)
+if error:
+    print(f"Error occurred: {error}")
+else:
+    print(f"Payment amount: {response.amount} for {response.periods} months")
+
+
+'''
+'''
+# Example of retrieving all available prospective payments
+principal = "5000"  # $5000 as principal amount
+supplier_id = "987654321"  # Another Example Supplier ID
+currency = PR_Currency.USD  # Assuming PR_Currency.USD is a valid currency object
+
+payments, error = PR_ProspectivePayment.retrieve_all_available(principal, currency, supplier_id)
+if error:
+    print(f"Error occurred: {error}")
+else:
+    for payment in payments:
+        print(f"Payment option: {payment.amount} per month for {payment.periods} months")
+
+'''

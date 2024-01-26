@@ -8,8 +8,8 @@ from procuret.data.disposition import Disposition
 from typing import List, TypeVar, Type, Optional
 from procuret.session import Session
 from procuret.entity_identifier.identifier import EntityIdentifier
-from procuret.http.api_request import ApiRequest, HTTPMethod, QueryParameters
-from procuret.http.query_parameter import QueryParameter
+from procuret.http2.api_request import ApiRequest, HTTPMethod, QueryParameters
+from procuret.http2.query_parameter import QueryParameter
 from procuret.address.address import Address
 
 Self = TypeVar('Self', bound='Entity')

@@ -10,8 +10,8 @@ from typing import Optional, List, TypeVar, Type
 from procuret.time.time import ProcuretTime
 from procuret.data.disposition import Disposition
 from procuret.term_rate.term_rate import TermRate
-from procuret.http.api_request import ApiRequest, HTTPMethod
-from procuret.http.query_parameters import QueryParameter, QueryParameters
+from procuret.http2.api_request import ApiRequest, HTTPMethod
+from procuret.http2.query_parameters import QueryParameter, QueryParameters
 from procuret.errors.type_error import ProcuretTypeError
 from procuret.session import Session
 

@@ -8,8 +8,8 @@ from procuret.data.codable import CodingDefinition as CD
 from procuret.ancillary.abstract_session import AbstractSession
 from procuret.ancillary.session_lifecycle import Lifecycle
 from procuret.ancillary.session_perspective import Perspective
-from procuret.http.api_request import ApiRequest
-from procuret.http.method import HTTPMethod
+from procuret.http2.api_request import ApiRequest
+from procuret.http2.method import HTTPMethod
 from typing import TypeVar, Type, Optional
 from procuret.errors.inconsistent import InconsistentState
 from procuret.security.second_factor_code import SecondFactorCode
@@ -63,7 +63,6 @@ class Session(AbstractSession):
         return b64encode(
             json.dumps(self.encode()).encode('utf-8')
         ).decode('utf-8')
-
 
     def save_to_file(
         self,
@@ -186,7 +185,7 @@ short-lived.
         code = input('code: ')
 
         print('Creating Session...')
-    
+
         session = Self.create_with_email(
             email=email_address,
             plaintext_secret=secret,

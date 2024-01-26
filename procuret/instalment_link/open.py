@@ -6,7 +6,7 @@ author: hugh@blinkybeach.com
 from procuret.time.time import ProcuretTime
 from procuret.data.codable import Codable, CodingDefinition as CD
 from typing import TypeVar, Type
-from procuret.http.api_request import ApiRequest, HTTPMethod
+from procuret.http2.api_request import ApiRequest, HTTPMethod
 from procuret.session import Session
 from procuret.errors.type_error import ProcuretTypeError
 

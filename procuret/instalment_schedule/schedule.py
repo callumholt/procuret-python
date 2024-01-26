@@ -8,8 +8,8 @@ from typing import List, Any, TypeVar, Type, Optional
 from procuret.instalment_line.line import InstalmentLine
 from procuret.instalment_total_row.row import InstalmentTotalRow
 from procuret.session import Session
-from procuret.http.api_request import ApiRequest, HTTPMethod, QueryParameters
-from procuret.http.query_parameter import QueryParameter
+from procuret.http2.api_request import ApiRequest, HTTPMethod, QueryParameters
+from procuret.http2.query_parameter import QueryParameter
 
 Self = TypeVar('Self', bound='InstalmentSchedule')
 

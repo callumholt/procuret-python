@@ -6,8 +6,8 @@ author: hugh@blinkybeach.com
 from pydoc import plain
 from procuret.ancillary.session_perspective import Perspective
 from typing import Optional
-from procuret.http.method import HTTPMethod
-from procuret.http.api_request import ApiRequest
+from procuret.http2.method import HTTPMethod
+from procuret.http2.api_request import ApiRequest
 
 
 class SecondFactorCode:

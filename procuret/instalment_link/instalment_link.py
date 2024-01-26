@@ -9,13 +9,13 @@ from typing import TypeVar, Type, Union, List
 from procuret.data.codable import Codable, CodingDefinition as CD
 from procuret.ancillary.entity_headline import EntityHeadline
 from procuret.errors.type_error import ProcuretTypeError
-from procuret.http.api_request import ApiRequest, HTTPMethod
+from procuret.http2.api_request import ApiRequest, HTTPMethod
 from procuret.errors.inconsistent import InconsistentState
 from procuret.session import Session
 from decimal import Decimal
 from enum import Enum
 from procuret.data.order import Order
-from procuret.http.query_parameters import QueryParameter, QueryParameters
+from procuret.http2.query_parameters import QueryParameter, QueryParameters
 from typing import Optional
 from procuret.instalment_link.open import InstalmentLinkOpen
 from procuret.time.time import ProcuretTime
